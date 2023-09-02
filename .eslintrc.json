@@ -12,6 +12,7 @@
   "rules": {
     // Para poder hacer return de algo sin poner async ni await
     "@typescript-eslint/promise-function-async": "off",
+    "@typescript-eslint/return-await": "off",
     // Venían con nestjs apenas instalé, así que solo lo puse aqui tal cual
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
