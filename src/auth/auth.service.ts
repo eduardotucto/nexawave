@@ -12,7 +12,21 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
-  async signIn (loginFieldsDto: LoginFieldsDto) {}
+  async signIn (loginFieldsDto: LoginFieldsDto) {
+    const { email, password } = loginFieldsDto
+    try {
+      const { password: userPasword, ...userData } = await this.usersService.findOneByKey('email', email)
+      const isMatch = await bcrypt.compare(password, userPasword)
+      if (!isMatch) throw new Error('Password incorrect')
+      const token = this.jwtService.sign({ id: userData.id })
+      return {
+        ...userData,
+        access_token: token
+      }
+    } catch (e) {
+      throw new BadRequestException(e.message)
+    }
+  }
 
   async signUp (registerFieldsDto: RegisterFieldsDto) {
     try {

@@ -25,8 +25,13 @@ export class UsersService {
   async findOne (id: string) {
     const userFound = await this.userRepository.findOneBy({ id })
     if (!userFound) throw new HttpException('User not found', HttpStatus.NOT_FOUND)
+    return userFound
+  }
 
-    return this.userRepository.findOneBy({ id })
+  async findOneByKey (key: string, value: string) {
+    const userFound = await this.userRepository.findOneBy({ [key]: value })
+    if (!userFound) throw new Error('User not found')
+    return userFound
   }
 
   async update (id: string, updateUserDto: UpdateUserDto) {
