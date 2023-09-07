@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { MoneyStorage } from 'src/money-storages/entities/money-storage.entity'
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity()
 export class User {
@@ -22,4 +23,7 @@ export class User {
 
   @Column({ nullable: true })
     authStrategy?: string
+
+  @OneToMany(() => MoneyStorage, moneyStorage => moneyStorage.user)
+    moneyStorages: MoneyStorage[]
 }

@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AuthModule } from './auth/auth.module'
+import { MoneyStoragesModule } from './money-storages/money-storages.module'
 import * as path from 'path'
 
 @Module({
@@ -17,6 +18,7 @@ import * as path from 'path'
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
+        // autoLoadEntities: true,
         type: 'postgres',
         host: configService.get('PGHOST'),
         port: 5432,
@@ -32,7 +34,8 @@ import * as path from 'path'
       inject: [ConfigService]
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    MoneyStoragesModule
   ],
   controllers: [AppController],
   providers: [AppService]
