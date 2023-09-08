@@ -1,13 +1,11 @@
-// app.module.ts
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { UsersModule } from './users/users.module'
-import { ConfigModule, ConfigService } from '@nestjs/config'
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { ConfigModule } from '@nestjs/config'
 import { AuthModule } from './auth/auth.module'
 import { MoneyStoragesModule } from './money-storages/money-storages.module'
-import * as path from 'path'
+import { DatabaseModule } from './database/database.module'
 
 @Module({
   imports: [
@@ -15,24 +13,7 @@ import * as path from 'path'
       isGlobal: true,
       envFilePath: '.env.development'
     }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        // autoLoadEntities: true,
-        type: 'postgres',
-        host: configService.get('PGHOST'),
-        port: 5432,
-        username: configService.get('PGUSER'),
-        password: configService.get('PGPASSWORD'),
-        database: configService.get('PGDATABASE'),
-        entities: [path.join(__dirname, '**', '*.entity{.ts,.js}')], // para que cargue automáticamente todos las entidades
-        synchronize: true,
-        logging: true,
-        // esto sería el sslmode=require. Qué se yo (?) xd pero si no lo pongo me da error
-        ssl: true
-      }),
-      inject: [ConfigService]
-    }),
+    DatabaseModule,
     UsersModule,
     AuthModule,
     MoneyStoragesModule
