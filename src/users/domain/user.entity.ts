@@ -1,4 +1,4 @@
-import { MoneyStorage } from 'src/money-storages/entities/money-storage.entity'
+import { MoneyStorage } from 'src/money-storages/domain/money-storage.entity'
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity()

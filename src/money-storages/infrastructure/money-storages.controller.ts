@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Req, ValidationPipe, UsePipes, UseGuards } from '@nestjs/common'
-import { MoneyStoragesService } from './money-storages.service'
-import { CreateMoneyStorageDto } from './dto/create-money-storage.dto'
-import { UpdateMoneyStorageDto } from './dto/update-money-storage.dto'
+import { MoneyStoragesService } from '../application/money-storages.service'
+import { CreateMoneyStorageDto } from '../dto/create-money-storage.dto'
+import { UpdateMoneyStorageDto } from '../dto/update-money-storage.dto'
 import { UUIDValidationPipe } from 'src/uuid-validation.pipe'
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
+import { JwtAuthGuard } from 'src/auth/insfrastructure/jwt-auth.guard'
 
 @Controller('money-storages')
 export class MoneyStoragesController {

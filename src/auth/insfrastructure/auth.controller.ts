@@ -1,7 +1,7 @@
-import { LoginFieldsDto } from './dto/login-fields.dto'
+import { LoginFieldsDto } from '../dto/login-fields.dto'
 import { BadRequestException, Body, Controller, Post, UsePipes, ValidationPipe } from '@nestjs/common'
-import { AuthService } from './auth.service'
-import { RegisterFieldsDto } from './dto/register-fields.dto'
+import { AuthService } from '../application/auth.service'
+import { RegisterFieldsDto } from '../dto/register-fields.dto'
 
 @Controller('auth')
 export class AuthController {

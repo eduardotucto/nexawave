@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
-import { type CreateMoneyStorageDto } from './dto/create-money-storage.dto'
-import { type UpdateMoneyStorageDto } from './dto/update-money-storage.dto'
-import { MoneyStorage } from './entities/money-storage.entity'
+import { type CreateMoneyStorageDto } from '../dto/create-money-storage.dto'
+import { type UpdateMoneyStorageDto } from '../dto/update-money-storage.dto'
+import { MoneyStorage } from '../domain/money-storage.entity'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 

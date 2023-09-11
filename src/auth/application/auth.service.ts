@@ -1,8 +1,8 @@
 import * as bcrypt from 'bcrypt'
 import { BadRequestException, Injectable } from '@nestjs/common'
-import { UsersService } from '../users/users.service'
-import { type LoginFieldsDto } from './dto/login-fields.dto'
-import { type RegisterFieldsDto } from './dto/register-fields.dto'
+import { UsersService } from '../../users/application/users.service'
+import { type LoginFieldsDto } from '../dto/login-fields.dto'
+import { type RegisterFieldsDto } from '../dto/register-fields.dto'
 import { JwtService } from '@nestjs/jwt'
 
 @Injectable()
