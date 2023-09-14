@@ -13,13 +13,13 @@ export class MoneyStorage {
     userId: string
 
   @Column({ unique: true })
-    storage_name: string
+    label: string
 
   @Column({
     type: 'enum',
     enum: ['Debit', 'Credit', 'Cash', 'Investment', 'Other']
   })
-    storage_type: string
+    type: string
 
   @Column('decimal', { precision: 10, scale: 2, default: 0 })
     balance: number

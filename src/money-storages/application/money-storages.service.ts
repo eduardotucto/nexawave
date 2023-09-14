@@ -10,9 +10,9 @@ export class MoneyStoragesService {
   constructor (@InjectRepository(MoneyStorage) private readonly moneyStorageRepository: Repository<MoneyStorage>) {}
 
   async create (createMoneyStorageDto: CreateMoneyStorageDto, userId: string) {
-    const { storage_name: storageName } = createMoneyStorageDto
-    const moneyStorageFound = await this.moneyStorageRepository.findOne({ where: { storage_name: storageName, userId } })
-    if (moneyStorageFound) throw new HttpException(`Money storage '${storageName}' already exist`, HttpStatus.CONFLICT)
+    const { label } = createMoneyStorageDto
+    const moneyStorageFound = await this.moneyStorageRepository.findOne({ where: { label, userId } })
+    if (moneyStorageFound) throw new HttpException(`Money storage '${label}' already exist`, HttpStatus.CONFLICT)
 
     const newMoneyStorage = this.moneyStorageRepository.create({ userId, ...createMoneyStorageDto })
     return this.moneyStorageRepository.save(newMoneyStorage)
