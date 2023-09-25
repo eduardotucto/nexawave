@@ -1,4 +1,4 @@
-import { IsBoolean, IsEnum, IsNotEmpty, IsNumber } from 'class-validator'
+import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator'
 
 enum StorageTypeEnum {
   Debit = 'Debit',
@@ -9,16 +9,18 @@ enum StorageTypeEnum {
 }
 
 export class CreateMoneyStorageDto {
-  @IsNotEmpty({ message: "Field 'label' is required." })
+  @IsNotEmpty({ message: 'Label is required.' })
+  @IsString({ message: 'Label must be string' })
+  @MaxLength(50, { message: 'Label is too long' })
     label: string
 
-  @IsNotEmpty({ message: "Field 'type' is required." })
-  @IsEnum(StorageTypeEnum, { message: `Field 'type' must be one of: ${Object.values(StorageTypeEnum).join(', ')}` })
+  @IsNotEmpty({ message: 'Type is required.' })
+  @IsEnum(StorageTypeEnum, { message: `Type must be one of: ${Object.values(StorageTypeEnum).join(', ')}` })
     type: StorageTypeEnum
 
-  @IsNumber({ allowInfinity: false, maxDecimalPlaces: 2 }, { message: "Field 'balance' must be a number with a maximum of 2 decimal places" })
+  @IsNumber({ allowInfinity: false, maxDecimalPlaces: 2 }, { message: 'Balance must be a number with a maximum of 2 decimal places' })
     balance: number
 
-  @IsBoolean({ message: "Field 'contribution' must be boolean" })
+  @IsBoolean({ message: 'Contribution must be boolean' })
     contribution: boolean
 }

@@ -1,18 +1,13 @@
 import { User } from 'src/users/domain/user.entity'
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { nanoid } from 'nanoid'
 
 @Entity()
 export class MoneyStorage {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn('varchar', { length: 21 })
     id: string
 
-  @ManyToOne(() => User, user => user.moneyStorages)
-    user: User
-
-  @Column()
-    userId: string
-
-  @Column({ unique: true })
+  @Column('varchar', { unique: true, length: 50 })
     label: string
 
   @Column({
@@ -27,9 +22,20 @@ export class MoneyStorage {
   @Column({ type: 'boolean', default: true })
     contribution: boolean
 
+  @Column('varchar', { length: 21 })
+    userId: string
+
   @CreateDateColumn({ type: 'timestamp with time zone' })
     createdAt: Date
 
   @UpdateDateColumn({ type: 'timestamp with time zone' })
     updatedAt: Date
+
+  @ManyToOne(() => User, user => user.moneyStorages)
+    user: User
+
+  @BeforeInsert()
+  generateId () {
+    this.id = nanoid()
+  }
 }
