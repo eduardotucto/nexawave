@@ -39,7 +39,9 @@ export class AuthService {
       }
       const newUserCreated = await this.usersService.create(userData)
       const accessToken = await this.jwtService.signAsync({ id: newUserCreated.id })
+      const { password: userPasword, ...restData } = newUserCreated
       return {
+        ...restData,
         accessToken
       }
     } catch (e) {
