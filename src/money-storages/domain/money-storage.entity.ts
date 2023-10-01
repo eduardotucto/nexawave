@@ -4,10 +4,10 @@ import { nanoid } from 'nanoid'
 
 @Entity()
 export class MoneyStorage {
-  @PrimaryColumn('varchar', { length: 21 })
+  @PrimaryColumn('varchar', { unique: true, length: 21 })
     id: string
 
-  @Column('varchar', { unique: true, length: 50 })
+  @Column('varchar', { length: 50 })
     label: string
 
   @Column({
