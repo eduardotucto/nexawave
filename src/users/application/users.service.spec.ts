@@ -1,12 +1,12 @@
 import { Test, type TestingModule } from '@nestjs/testing'
-import { UsersService } from './users.service'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { User } from '../domain/user.entity'
 import { DatabaseModule } from 'src/config/database/database.module'
 import { ConfigModule, ConfigService } from '@nestjs/config'
+import { UsersCrudService } from './'
 
 describe('UsersService', () => {
-  let service: UsersService
+  let service: UsersCrudService
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -15,10 +15,10 @@ describe('UsersService', () => {
         TypeOrmModule.forFeature([User]),
         ConfigModule
       ],
-      providers: [UsersService, ConfigService]
+      providers: [UsersCrudService, ConfigService]
     }).compile()
 
-    service = module.get<UsersService>(UsersService)
+    service = module.get<UsersCrudService>(UsersCrudService)
   })
 
   it('should be defined', () => {

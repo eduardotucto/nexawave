@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
 @Injectable()
-export class MoneyStoragesService {
+export class MoneyStoragesCrudService {
   constructor (@InjectRepository(MoneyStorage) private readonly moneyStorageRepository: Repository<MoneyStorage>) {}
 
   async create (createMoneyStorageDto: CreateMoneyStorageDto, userId: string) {
