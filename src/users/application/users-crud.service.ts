@@ -45,4 +45,13 @@ export class UsersCrudService {
     if (res.affected === 0) throw new HttpException('User not found', HttpStatus.NOT_FOUND)
     return res
   }
+
+  async findOneByIdWithItsMoneyStorages (id: string) {
+    const userFound = await this.userRepository.findOne({
+      where: { id },
+      relations: ['moneyStorages']
+    })
+    if (!userFound) throw new HttpException('User not found', HttpStatus.NOT_FOUND)
+    return userFound
+  }
 }

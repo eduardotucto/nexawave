@@ -14,9 +14,6 @@ export class AppController {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile (@Req() req) {
-    return {
-      msg: 'Solo deber verlo si estas autorizado',
-      userId: req.user.id
-    }
+    return this.appService.getProfile(req.user.id)
   }
 }
