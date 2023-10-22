@@ -1,6 +1,7 @@
 import { User } from 'src/users/domain/user.entity'
-import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm'
 import { nanoid } from 'nanoid'
+import { Transaction } from 'src/transactions/domain/transaction.entity'
 
 @Entity()
 export class MoneyStorage {
@@ -33,6 +34,9 @@ export class MoneyStorage {
 
   @ManyToOne(() => User, user => user.moneyStorages)
     user: User
+
+  @OneToMany(() => Transaction, transaction => transaction.moneyStorage)
+    transactions: Transaction[]
 
   @BeforeInsert()
   generateId () {
