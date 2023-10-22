@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module'
 import { MoneyStoragesModule } from './money-storages/money-storages.module'
 import { DatabaseModule } from './config/database/database.module'
 import { TransactionsModule } from './transactions/transactions.module'
+import { OutstandingModule } from './outstanding/outstanding.module'
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { TransactionsModule } from './transactions/transactions.module'
     UsersModule,
     AuthModule,
     MoneyStoragesModule,
-    TransactionsModule
+    TransactionsModule,
+    OutstandingModule
   ],
   controllers: [AppController],
   providers: [AppService]
