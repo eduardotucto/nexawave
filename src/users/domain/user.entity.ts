@@ -1,4 +1,5 @@
 import { MoneyStorage } from 'src/money-storages/domain/money-storage.entity'
+import { Outstanding } from 'src/outstanding/domain/outstanding.entity'
 import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm'
 import { nanoid } from 'nanoid'
 
@@ -30,6 +31,9 @@ export class User {
 
   @OneToMany(() => MoneyStorage, moneyStorage => moneyStorage.user)
     moneyStorages: MoneyStorage[]
+
+  @OneToMany(() => Outstanding, outstanding => outstanding.user)
+    outstandings: Outstanding[]
 
   @BeforeInsert()
   generateId () {
