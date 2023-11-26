@@ -5,8 +5,10 @@ import { UsersCrudService } from './users/application'
 export class AppService {
   constructor (private readonly usersCrudService: UsersCrudService) {}
 
-  getHello (): string {
-    return 'Hello World!'
+  getHello (): { msg: string } {
+    return {
+      msg: 'Hello World! xd 5'
+    }
   }
 
   getProfile (id: string) {
