@@ -7,7 +7,7 @@ export class AppService {
 
   getHello (): { msg: string } {
     return {
-      msg: 'Hello World! xd 5'
+      msg: 'Hello World 6'
     }
   }
 
