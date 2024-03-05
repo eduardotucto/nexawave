@@ -15,8 +15,8 @@ export class AuthService {
   async signIn (loginFieldsDto: LoginFieldsDto) {
     const { email, password } = loginFieldsDto
     try {
-      const { password: userPasword, ...userData } = await this.usersCrudService.findOneByKey('email', email)
-      const isMatch = await bcrypt.compare(password, userPasword)
+      const { password: userPassword, ...userData } = await this.usersCrudService.findOneByKey('email', email)
+      const isMatch = await bcrypt.compare(password, userPassword)
       if (!isMatch) throw new Error('Password incorrect')
       const token = this.jwtService.sign({ id: userData.id })
       return {
@@ -39,7 +39,7 @@ export class AuthService {
       }
       const newUserCreated = await this.usersCrudService.create(userData)
       const accessToken = await this.jwtService.signAsync({ id: newUserCreated.id })
-      const { password: userPasword, ...restData } = newUserCreated
+      const { password: userPassword, ...restData } = newUserCreated
       return {
         ...restData,
         accessToken

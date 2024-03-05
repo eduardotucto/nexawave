@@ -3,7 +3,7 @@ import { MoneyStoragesCrudService } from '../application'
 import { CreateMoneyStorageDto } from '../dto/create-money-storage.dto'
 import { UpdateMoneyStorageDto } from '../dto/update-money-storage.dto'
 import { NanoIdValidationPipe } from 'src/nanoid-validation.pipe'
-import { JwtAuthGuard } from 'src/auth/insfrastructure/jwt-auth.guard'
+import { JwtAuthGuard } from 'src/auth/infrastructure/jwt-auth.guard'
 
 @Controller('money-storages')
 export class MoneyStoragesController {

@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, UsePipes,
 import { TransactionsCrudService } from '../application'
 import { CreateTransactionDto } from '../dto/create-transaction.dto'
 import { UpdateTransactionDto } from '../dto/update-transaction.dto'
-import { JwtAuthGuard } from 'src/auth/insfrastructure/jwt-auth.guard'
+import { JwtAuthGuard } from 'src/auth/infrastructure/jwt-auth.guard'
 import { NanoIdValidationPipe } from 'src/nanoid-validation.pipe'
 
 @Controller('transactions')

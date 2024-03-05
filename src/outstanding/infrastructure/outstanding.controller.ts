@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException,
 import { OutstandingCrudService } from '../application'
 import { CreateOutstandingDto } from '../dto/create-outstanding.dto'
 import { UpdateOutstandingDto } from '../dto/update-outstanding.dto'
-import { JwtAuthGuard } from 'src/auth/insfrastructure/jwt-auth.guard'
+import { JwtAuthGuard } from 'src/auth/infrastructure/jwt-auth.guard'
 
 @Controller('outstanding')
 export class OutstandingController {
