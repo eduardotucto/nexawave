@@ -1,10 +1,10 @@
 import { User } from 'src/users/domain/user.entity'
-import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm'
 import { nanoid } from 'nanoid'
 import { Transaction } from 'src/transactions/domain/transaction.entity'
 
 @Entity()
-export class MoneyStorage {
+export class FinancialResource {
   @PrimaryColumn('varchar', { unique: true, length: 21 })
     id: string
 
@@ -13,9 +13,12 @@ export class MoneyStorage {
 
   @Column({
     type: 'enum',
-    enum: ['Debit', 'Credit', 'Cash', 'Investment', 'Other']
+    enum: ['Cash', 'Bank account', 'Credit', 'Other']
   })
     type: string
+
+  @Column('varchar', { length: 3 })
+    currency: string
 
   @Column('decimal', { precision: 10, scale: 2, default: 0 })
     balance: number
@@ -29,13 +32,10 @@ export class MoneyStorage {
   @CreateDateColumn({ type: 'timestamp with time zone' })
     createdAt: Date
 
-  @UpdateDateColumn({ type: 'timestamp with time zone' })
-    updatedAt: Date
-
-  @ManyToOne(() => User, user => user.moneyStorages)
+  @ManyToOne(() => User, user => user.financialResources)
     user: User
 
-  @OneToMany(() => Transaction, transaction => transaction.moneyStorage)
+  @OneToMany(() => Transaction, transaction => transaction.financialResource)
     transactions: Transaction[]
 
   @BeforeInsert()

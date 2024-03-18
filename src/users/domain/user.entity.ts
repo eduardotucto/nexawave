@@ -1,7 +1,7 @@
-import { MoneyStorage } from 'src/money-storages/domain/money-storage.entity'
 import { Outstanding } from 'src/outstanding/domain/outstanding.entity'
 import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm'
 import { nanoid } from 'nanoid'
+import { FinancialResource } from 'src/financial-resources/domain/financial-resources.entity'
 
 @Entity()
 export class User {
@@ -29,8 +29,8 @@ export class User {
   @UpdateDateColumn({ type: 'timestamp with time zone' })
     updatedAt: Date
 
-  @OneToMany(() => MoneyStorage, moneyStorage => moneyStorage.user)
-    moneyStorages: MoneyStorage[]
+  @OneToMany(() => FinancialResource, financialResource => financialResource.user)
+    financialResources: FinancialResource[]
 
   @OneToMany(() => Outstanding, outstanding => outstanding.user)
     outstandings: Outstanding[]

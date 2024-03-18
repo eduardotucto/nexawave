@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid'
-import { MoneyStorage } from 'src/money-storages/domain/money-storage.entity'
+import { FinancialResource } from 'src/financial-resources/domain/financial-resources.entity'
 import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
 
 @Entity()
@@ -16,11 +16,11 @@ export class Transaction {
   @Column('decimal', { precision: 8, scale: 2 })
     amount: number
 
-  @ManyToOne(() => MoneyStorage, moneyStorage => moneyStorage.transactions)
-    moneyStorage: MoneyStorage
+  @ManyToOne(() => FinancialResource, financialResource => financialResource.transactions)
+    financialResource: FinancialResource
 
   @Column('varchar', { length: 21 })
-    moneyStorageId: string
+    financialResourceId: string
 
   @CreateDateColumn({ type: 'timestamp with time zone' })
     createdAt: Date

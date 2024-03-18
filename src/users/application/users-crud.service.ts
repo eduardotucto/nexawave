@@ -46,10 +46,10 @@ export class UsersCrudService {
     return res
   }
 
-  async findOneByIdWithItsMoneyStorages (id: string) {
+  async findOneByIdWithItsFinancialResources (id: string) {
     const userFound = await this.userRepository.findOne({
       where: { id },
-      relations: ['moneyStorages']
+      relations: ['financialResources']
     })
     if (!userFound) throw new HttpException('User not found', HttpStatus.NOT_FOUND)
     return userFound

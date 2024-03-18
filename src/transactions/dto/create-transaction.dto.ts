@@ -12,6 +12,6 @@ export class CreateTransactionDto {
   @IsNumber({ allowInfinity: false, maxDecimalPlaces: 2 }, { message: 'Amount must be a number with a maximum of 2 decimal places' })
     amount: number
 
-  @IsNotEmpty({ message: 'MoneyStorageId is required.' })
-    moneyStorageId: string
+  @IsNotEmpty({ message: 'FinancialResourceId is required.' })
+    financialResourceId: string
 }

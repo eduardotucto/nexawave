@@ -4,7 +4,7 @@ import { AppService } from './app.service'
 import { UsersModule } from './users/users.module'
 import { ConfigModule } from '@nestjs/config'
 import { AuthModule } from './auth/auth.module'
-import { MoneyStoragesModule } from './money-storages/money-storages.module'
+import { FinancialResourcesModule } from './financial-resources/financial-resources.module'
 import { DatabaseModule } from './config/database/database.module'
 import { TransactionsModule } from './transactions/transactions.module'
 import { OutstandingModule } from './outstanding/outstanding.module'
@@ -18,7 +18,7 @@ import { OutstandingModule } from './outstanding/outstanding.module'
     DatabaseModule,
     UsersModule,
     AuthModule,
-    MoneyStoragesModule,
+    FinancialResourcesModule,
     TransactionsModule,
     OutstandingModule
   ],

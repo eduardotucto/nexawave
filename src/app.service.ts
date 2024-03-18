@@ -13,7 +13,7 @@ export class AppService {
 
   getProfile (id: string) {
     try {
-      return this.usersCrudService.findOneByIdWithItsMoneyStorages(id)
+      return this.usersCrudService.findOneByIdWithItsFinancialResources(id)
     } catch (e) {
       throw new HttpException(e, HttpStatus.NOT_FOUND)
     }
