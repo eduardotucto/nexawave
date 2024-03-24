@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
-import { type CreateFinancialResourceDto } from '../dto/create-financial-resource.dto'
+import { type CreateFinancialResourceDto, StorageTypeEnum } from '../dto/create-financial-resource.dto'
 import { type UpdateFinancialResourceDto } from '../dto/update-financial-resource.dto'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
@@ -10,9 +10,16 @@ export class FinancialResourcesCrudService {
   constructor (@InjectRepository(FinancialResource) private readonly financialResourceRepository: Repository<FinancialResource>) {}
 
   async create (createFinancialResourceDto: CreateFinancialResourceDto, userId: string) {
-    const { label } = createFinancialResourceDto
+    const { label, type, creditLimit } = createFinancialResourceDto
+
     const financialResource = await this.financialResourceRepository.findOne({ where: { label, userId } })
-    if (financialResource) throw new HttpException(`Financial resource '${label}' already exist`, HttpStatus.CONFLICT)
+    if (financialResource) {
+      throw new HttpException(`Financial resource '${label}' already exist`, HttpStatus.CONFLICT)
+    }
+
+    if (type === StorageTypeEnum.Credit && !creditLimit) {
+      throw new HttpException('A credit card requires a limit.', HttpStatus.BAD_REQUEST)
+    }
 
     const newFinancialResource = this.financialResourceRepository.create({ userId, ...createFinancialResourceDto })
     return this.financialResourceRepository.save(newFinancialResource)

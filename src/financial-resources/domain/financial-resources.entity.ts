@@ -17,6 +17,9 @@ export class FinancialResource {
   })
     type: string
 
+  @Column('decimal', { precision: 10, scale: 2, nullable: true })
+    creditLimit: number
+
   @Column('varchar', { length: 3 })
     currency: string
 

@@ -1,6 +1,6 @@
-import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator'
+import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator'
 
-enum StorageTypeEnum {
+export enum StorageTypeEnum {
   Cash = 'Cash',
   BankAccount = 'Bank account',
   Credit = 'Credit',
@@ -16,6 +16,10 @@ export class CreateFinancialResourceDto {
   @IsNotEmpty({ message: 'Type is required.' })
   @IsEnum(StorageTypeEnum, { message: `Type must be one of: ${Object.values(StorageTypeEnum).join(', ')}` })
     type: StorageTypeEnum
+
+  @IsOptional()
+  @IsNumber({ allowInfinity: false, maxDecimalPlaces: 2 }, { message: 'Credit limit must be a number with a maximum of 2 decimal places' })
+    creditLimit: number
 
   @IsNotEmpty({ message: 'Currency is required.' })
   @IsString({ message: 'Currency must be string' })
