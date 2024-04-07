@@ -2,6 +2,7 @@ import { User } from 'src/users/domain/user.entity'
 import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm'
 import { nanoid } from 'nanoid'
 import { Transaction } from 'src/transactions/domain/transaction.entity'
+import { NumberTransformer } from 'src/utils/transformer'
 
 @Entity()
 export class FinancialResource {
@@ -17,13 +18,13 @@ export class FinancialResource {
   })
     type: string
 
-  @Column('decimal', { precision: 10, scale: 2, nullable: true })
+  @Column('decimal', { precision: 10, scale: 2, nullable: true, transformer: new NumberTransformer() })
     creditLimit: number
 
   @Column('varchar', { length: 3 })
     currency: string
 
-  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  @Column('decimal', { precision: 10, scale: 2, default: 0, transformer: new NumberTransformer() })
     balance: number
 
   @Column({ type: 'boolean', default: true })

@@ -1,6 +1,7 @@
 import { Entity, PrimaryColumn, Column, BeforeInsert, ManyToOne, CreateDateColumn } from 'typeorm'
 import { nanoid } from 'nanoid'
 import { User } from 'src/users/domain/user.entity'
+import { NumberTransformer } from 'src/utils/transformer'
 
 export enum EntryType {
   DEBT = 'Debt',
@@ -15,7 +16,7 @@ export class Outstanding {
   @Column('varchar', { length: 150 })
     description: string
 
-  @Column('decimal', { precision: 10, scale: 2 })
+  @Column('decimal', { precision: 10, scale: 2, transformer: new NumberTransformer() })
     amount: number
 
   @Column({ type: 'boolean', default: false })
@@ -30,10 +31,10 @@ export class Outstanding {
   @Column({ type: 'boolean', nullable: true })
     isRecurring: boolean
 
-  @Column({ type: 'integer', nullable: true })
+  @Column({ type: 'integer', nullable: true, transformer: new NumberTransformer() })
     paymentDay: number
 
-  @Column({ type: 'integer', nullable: true })
+  @Column({ type: 'integer', nullable: true, transformer: new NumberTransformer() })
     paymentDurationMonths: number
 
   @Column('varchar', { length: 21 })
