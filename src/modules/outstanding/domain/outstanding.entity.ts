@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column, BeforeInsert, ManyToOne, CreateDateColumn } from 'typeorm'
 import { nanoid } from 'nanoid'
-import { User } from 'src/users/domain/user.entity'
+import { User } from '@/modules/users/domain/user.entity'
 import { NumberTransformer } from 'src/utils/transformer'
 
 export enum EntryType {

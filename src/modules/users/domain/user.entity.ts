@@ -1,7 +1,7 @@
-import { Outstanding } from 'src/outstanding/domain/outstanding.entity'
+import { Outstanding } from '@/modules/outstanding/domain/outstanding.entity'
 import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm'
 import { nanoid } from 'nanoid'
-import { FinancialResource } from 'src/financial-resources/domain/financial-resources.entity'
+import { FinancialResource } from '@/modules/financial-resources/domain/financial-resources.entity'
 
 @Entity()
 export class User {

@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
-import { UsersCrudService } from './users/application'
+import { UsersCrudService } from '@/modules/users/application'
 
 @Injectable()
 export class AppService {

@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
-import { FinancialResource } from 'src/financial-resources/domain/financial-resources.entity'
-import { NumberTransformer } from 'src/utils/transformer'
+import { FinancialResource } from '@/modules/financial-resources/domain/financial-resources.entity'
+import { NumberTransformer } from '@/utils/transformer'
 import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
 
 @Entity()

@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Req, ValidationPipe, UsePipes, UseGuards } from '@nestjs/common'
 import { FinancialResourcesCrudService } from '../application'
-import { NanoIdValidationPipe } from 'src/nanoid-validation.pipe'
-import { JwtAuthGuard } from 'src/auth/infrastructure/jwt-auth.guard'
+import { NanoIdValidationPipe } from '@/nanoid-validation.pipe'
+import { JwtAuthGuard } from '@/auth/infrastructure/jwt-auth.guard'
 import { CreateFinancialResourceDto, UpdateFinancialResourceDto } from '../dto'
 
 @Controller('financial-resources')

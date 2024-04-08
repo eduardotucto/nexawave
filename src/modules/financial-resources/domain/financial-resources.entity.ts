@@ -1,7 +1,7 @@
-import { User } from 'src/users/domain/user.entity'
+import { User } from '@/modules/users/domain/user.entity'
 import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm'
 import { nanoid } from 'nanoid'
-import { Transaction } from 'src/transactions/domain/transaction.entity'
+import { Transaction } from '@/modules/transactions/domain/transaction.entity'
 import { NumberTransformer } from 'src/utils/transformer'
 
 @Entity()
