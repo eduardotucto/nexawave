@@ -7,6 +7,7 @@ import { FinancialResourcesCrudService } from './application'
 @Module({
   imports: [TypeOrmModule.forFeature([FinancialResource])],
   controllers: [FinancialResourcesController],
-  providers: [FinancialResourcesCrudService]
+  providers: [FinancialResourcesCrudService],
+  exports: [FinancialResourcesCrudService]
 })
 export class FinancialResourcesModule {}

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { SeedService } from '@/seed/seed.service'
 import { UsersModule } from '@/modules/users/users.module'
 import { ConfigModule } from '@nestjs/config'
 import { AuthModule } from '@/auth/auth.module'
@@ -23,6 +24,6 @@ import { OutstandingModule } from '@/modules/outstanding/outstanding.module'
     OutstandingModule
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService, SeedService]
 })
 export class AppModule {}

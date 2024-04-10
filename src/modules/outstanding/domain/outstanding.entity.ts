@@ -22,9 +22,6 @@ export class Outstanding {
   @Column({ type: 'boolean', default: false })
     isCompleted: boolean
 
-  @Column({ type: 'timestamp with time zone', nullable: true })
-    dueDate: Date
-
   @Column({ type: 'enum', enum: EntryType })
     type: EntryType
 
@@ -33,9 +30,6 @@ export class Outstanding {
 
   @Column({ type: 'integer', nullable: true, transformer: new NumberTransformer() })
     paymentDay: number
-
-  @Column({ type: 'integer', nullable: true, transformer: new NumberTransformer() })
-    paymentDurationMonths: number
 
   @Column('varchar', { length: 21 })
     userId: string

@@ -1,4 +1,4 @@
-import { IsBoolean, IsDateString, IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator'
+import { IsBoolean, IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator'
 import { EntryType } from '../domain/outstanding.entity'
 
 export class CreateOutstandingDto {
@@ -15,10 +15,6 @@ export class CreateOutstandingDto {
   @IsBoolean({ message: 'isCompleted must be boolean' })
     isCompleted: boolean
 
-  @IsOptional()
-  @IsDateString({ strict: true }, { message: 'DueDate must be a valid date.' })
-    dueDate: Date
-
   @IsNotEmpty({ message: 'Type is required.' })
   @IsEnum(EntryType, { message: `Type must be one of: ${Object.values(EntryType).join(', ')}` })
     type: EntryType
@@ -29,8 +25,4 @@ export class CreateOutstandingDto {
   @IsOptional()
   @IsInt({ message: 'paymentDay must be a integer number' })
     paymentDay: number
-
-  @IsOptional()
-  @IsInt({ message: 'paymentDurationMonths must be a integer number' })
-    paymentDurationMonths: number
 }

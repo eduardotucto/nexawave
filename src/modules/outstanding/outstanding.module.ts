@@ -7,6 +7,7 @@ import { Outstanding } from './domain/outstanding.entity'
 @Module({
   imports: [TypeOrmModule.forFeature([Outstanding])],
   controllers: [OutstandingController],
-  providers: [OutstandingCrudService]
+  providers: [OutstandingCrudService],
+  exports: [OutstandingCrudService]
 })
 export class OutstandingModule {}
