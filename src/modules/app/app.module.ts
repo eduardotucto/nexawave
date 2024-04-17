@@ -9,6 +9,7 @@ import { FinancialResourcesModule } from '@/modules/financial-resources/financia
 import { DatabaseModule } from '@/config/database/database.module'
 import { TransactionsModule } from '@/modules/transactions/transactions.module'
 import { OutstandingModule } from '@/modules/outstanding/outstanding.module'
+import { BudgetsModule } from '@/modules/budget/financial-resources.module'
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { OutstandingModule } from '@/modules/outstanding/outstanding.module'
     AuthModule,
     FinancialResourcesModule,
     TransactionsModule,
-    OutstandingModule
+    OutstandingModule,
+    BudgetsModule
   ],
   controllers: [AppController],
   providers: [AppService, SeedService]

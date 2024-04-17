@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid'
 import { FinancialResource } from '@/modules/financial-resources/domain/financial-resources.entity'
 import { NumberTransformer } from '@/utils/transformer'
 import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
+import { Budget } from '@/modules/budget/domain/budget.entity'
 
 @Entity()
 export class Transaction {
@@ -22,6 +23,12 @@ export class Transaction {
 
   @Column('varchar', { length: 21 })
     financialResourceId: string
+
+  @ManyToOne(() => Budget, budget => budget.transactions)
+    budget: Budget
+
+  @Column('varchar', { length: 21, nullable: true })
+    budgetId?: string
 
   @CreateDateColumn({ type: 'timestamp with time zone' })
     createdAt: Date

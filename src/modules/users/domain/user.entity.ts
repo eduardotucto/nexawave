@@ -2,6 +2,7 @@ import { Outstanding } from '@/modules/outstanding/domain/outstanding.entity'
 import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm'
 import { nanoid } from 'nanoid'
 import { FinancialResource } from '@/modules/financial-resources/domain/financial-resources.entity'
+import { Budget } from '@/modules/budget/domain/budget.entity'
 
 @Entity()
 export class User {
@@ -34,6 +35,9 @@ export class User {
 
   @OneToMany(() => Outstanding, outstanding => outstanding.user)
     outstandings: Outstanding[]
+
+  @OneToMany(() => Budget, budget => budget.user)
+    budgets: Budget[]
 
   @BeforeInsert()
   generateId () {
