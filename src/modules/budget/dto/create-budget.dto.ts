@@ -5,8 +5,8 @@ export class CreateBudgetDto {
   @MaxLength(50, { message: 'Label is too long' })
     name: string
 
-  @IsNumber({ allowInfinity: false, maxDecimalPlaces: 2 }, { message: 'Balance must be a number with a maximum of 2 decimal places' })
-    balance: number
+  @IsNumber({ allowInfinity: false, maxDecimalPlaces: 2 }, { message: 'Amount must be a number with a maximum of 2 decimal places' })
+    amount: number
 
   @IsOptional()
   @IsString({ message: 'BudgetId must be string' })

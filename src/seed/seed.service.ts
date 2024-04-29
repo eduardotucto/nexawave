@@ -6,6 +6,7 @@ import { FinancialResourcesCrudService } from '@/modules/financial-resources/app
 import { TransactionsCrudService } from '@/modules/transactions/application'
 import { EntryType } from '@/modules/outstanding/domain/outstanding.entity'
 import { OutstandingCrudService } from '@/modules/outstanding/application'
+import { BudgetsCrudService } from '@/modules/budget/application'
 
 enum Currency { USD = 'USD', PEN = 'PEN' }
 enum Limit { UNO = 1000, DOS = 2000, TRES = 3000, CUATRO = 4000 }
@@ -16,7 +17,8 @@ export class SeedService {
     private readonly authService: AuthService,
     private readonly financialResourcesCrudService: FinancialResourcesCrudService,
     private readonly transactionsCrudService: TransactionsCrudService,
-    private readonly outstandingCrudService: OutstandingCrudService
+    private readonly outstandingCrudService: OutstandingCrudService,
+    private readonly budgetsCrudService: BudgetsCrudService
   ) {}
 
   async seedUsers () {
@@ -33,8 +35,11 @@ export class SeedService {
     const savedUsers = await Promise.all(users.map(user => this.authService.signUp(user)))
     const savedUsersIds = savedUsers.map(user => user.id)
 
-    await this.seedFinancialResources(savedUsersIds)
-    await this.seedOutstandings(savedUsersIds)
+    await Promise.all([
+      this.seedFinancialResources(savedUsersIds),
+      this.seedOutstandings(savedUsersIds),
+      this.seedBudgets(savedUsersIds)
+    ])
   }
 
   async seedFinancialResources (usersId: string[]) {
@@ -64,14 +69,14 @@ export class SeedService {
       return financialResourcesPerId
     })
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const savedFinancialResources = await Promise.all(financialResourcesGrouped.flat().map(financialResource => {
       const { userId, ...data } = financialResource
       return this.financialResourcesCrudService.create(data, userId)
     }))
 
-    const savedFinancialResourcesIds = savedFinancialResources.map(financialResource => financialResource.id)
-
-    await this.seedTransactions(savedFinancialResourcesIds)
+    // const savedFinancialResourcesIds = savedFinancialResources.map(financialResource => financialResource.id)
+    // await this.seedTransactions(savedFinancialResourcesIds)
   }
 
   async seedTransactions (financialResourcesIds: string[]) {
@@ -118,6 +123,22 @@ export class SeedService {
     await Promise.all(outstandingsGrouped.flat().map(outstanding => {
       const { userId, ...data } = outstanding
       return this.outstandingCrudService.create(data, userId)
+    }))
+  }
+
+  async seedBudgets (usersId: string[]) {
+    const budgetsGrouped = usersId.map(id => {
+      const budgetsPerId = [
+        { userId: id, name: 'Necesidades', amount: 500 },
+        { userId: id, name: 'Deseos', amount: 300 },
+        { userId: id, name: 'Ahorros', amount: 200 }
+      ]
+      return budgetsPerId
+    })
+
+    await Promise.all(budgetsGrouped.flat().map(budget => {
+      const { userId, ...data } = budget
+      return this.budgetsCrudService.create(data, userId)
     }))
   }
 }

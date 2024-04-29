@@ -6,6 +6,7 @@ async function bootstrap () {
   const app = await NestFactory.createApplicationContext(AppModule)
   const seedService = app.get(SeedService)
 
+  // node dist/seed/seed.js
   try {
     await seedService.seedUsers()
     console.log('Seed completed successfully.')

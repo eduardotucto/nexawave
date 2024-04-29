@@ -10,6 +10,7 @@ export class BudgetsCrudService {
 
   create (createBudgetDto: CreateBudgetDto, userId: string) {
     const newBudget = this.budgetRepository.create({ userId, ...createBudgetDto })
+    newBudget.balance = newBudget.amount
     return this.budgetRepository.save(newBudget)
   }
 
