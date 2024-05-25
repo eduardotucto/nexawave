@@ -8,6 +8,10 @@ export class CreateBudgetDto {
   @IsNumber({ allowInfinity: false, maxDecimalPlaces: 2 }, { message: 'Amount must be a number with a maximum of 2 decimal places' })
     amount: number
 
+  // @IsOptional()
+  // @IsString({ message: 'Color must be string' })
+  //   color: string
+
   @IsOptional()
   @IsString({ message: 'BudgetId must be string' })
     budgetId?: string

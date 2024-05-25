@@ -18,6 +18,9 @@ export class Budget {
   @Column('decimal', { precision: 10, scale: 2, transformer: new NumberTransformer() })
     balance: number
 
+  // @Column('varchar', { nullable: true })
+  //   color: string
+
   @Column('varchar', { length: 21 })
     userId: string
 
